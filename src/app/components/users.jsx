@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import GroupList from "./groupList";
 import api from "../api";
 import SearchStatus from "./searchStatus";
-const Users = ({ users: allUsers, ...rest }) => { // вот тут тож непонятно
+const Users = ({ users: allUsers, ...rest }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfession] = useState();
     const [selectedProf, setSelectedProf] = useState();
@@ -15,9 +15,8 @@ const Users = ({ users: allUsers, ...rest }) => { // вот тут тож неп
         api.professions
             .fetchAll()
             .then((data) =>
-                setProfession(data, { allProfession: { name: "Все професии" } }) // вот это не понял
+                setProfession(data)
             );
-        console.log(professions);
     }, []);
     useEffect(() => {
         setCurrentPage(1);
@@ -31,13 +30,11 @@ const Users = ({ users: allUsers, ...rest }) => { // вот тут тож неп
         setCurrentPage(pageIndex);
     };
     const filteredUsers = selectedProf
-        ? allUsers.filter((user) => user.profession === selectedProf) // тут непонятно
+        ? allUsers.filter((user) => user.profession.name === selectedProf.name)
         : allUsers;
-    console.log(allUsers);
     const count = filteredUsers.length;
     const userCrop = paginate(filteredUsers, currentPage, pageSize);
     const clearFilter = () => {
-        console.log(professions);
         setSelectedProf();
     };
     return (

@@ -19,16 +19,16 @@ function App() {
                 return user;
             })
         );
-        console.log(id);
     };
-    console.log(users);
     return (
         <div>
-            <Users
-                onDelete={handleDelete}
-                onToggleBookMark={handleToggleBookMark}
-                users={users}
-            />
+            {users && (
+                <Users
+                    onDelete={handleDelete}
+                    onToggleBookMark={handleToggleBookMark}
+                    users={users}
+                />
+            )}
         </div>
     );
 }
