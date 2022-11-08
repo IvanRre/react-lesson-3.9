@@ -1,18 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 const TableHeader = ({ onSort, selectedSort, columns }) => {
+    let caret = "";
     const handleSort = (item) => {
         if (selectedSort.path === item) {
             onSort({
                 ...selectedSort,
                 order: selectedSort.order === "asc" ? "desc" : "asc"
             });
-            // console.log(selectedSort);
+            caret = "up-fill";
         } else {
             onSort({ path: item, order: "asc" });
+            caret = "down-fill";
         }
     };
-    console.log(columns);
     return (
         <thead>
             <tr>
@@ -28,7 +29,7 @@ const TableHeader = ({ onSort, selectedSort, columns }) => {
                         scope="col"
                     >
                         {columns[column].name}
-                        {/* <i className="bi bi-caret-up-fill"></i> */}
+                        <i className={"bi bi-caret-" + caret}></i>
                     </th>
                 ))}
             </tr>
