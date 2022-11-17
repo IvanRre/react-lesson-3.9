@@ -11,9 +11,12 @@ const Users = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [professions, setProfession] = useState();
     const [selectedProf, setSelectedProf] = useState();
-    const [sortBy, setSortBy] = useState({ iter: "name", order: "asc", caret: "down-fill" });
+    const [sortBy, setSortBy] = useState({
+        iter: "name",
+        order: "asc",
+        caret: "down-fill"
+    });
     const pageSize = 8;
-
     const [users, setUsers] = useState();
     useEffect(() => {
         api.users.fetchAll().then((data) => setUsers(data));
@@ -69,7 +72,6 @@ const Users = () => {
         const clearFilter = () => {
             setSelectedProf();
         };
-
         return (
             <div className="d-flex">
                 {professions && (
