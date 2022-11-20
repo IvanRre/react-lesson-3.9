@@ -15,6 +15,7 @@ const UserPage = ({ match }) => {
             <h2>{"Профессия:" + user.profession.name}</h2>
             <QualitiesList qualities={user.qualities} />
             <h2>{"Rate:" + user.rate}</h2>
+            <h4>{"completedMeetings:" + user.completedMeetings}</h4>
             <button>Все пользователи</button>
         </div>
     ) : (
