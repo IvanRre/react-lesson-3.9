@@ -31,6 +31,18 @@ const UsersList = () => {
         setUsers(newArray);
     };
 
+    const [nam, setName] = useState();
+    const handleChange = (e) => {
+        setName(e.target.value);
+        const foundUsers = users.filter((user) => {
+            const ind = user.name.toLowerCase().indexOf(`${nam.toLowerCase()}`);
+            return ind >= 0;
+        });
+        console.log(nam);
+        console.log(foundUsers);
+        setUsers(foundUsers);
+    };
+
     useEffect(() => {
         api.professions.fetchAll().then((data) => setProfession(data));
     }, []);
@@ -90,6 +102,15 @@ const UsersList = () => {
                 )}
                 <div className="d-flex flex-column">
                     <SearchStatus length={count} />
+                    <form action="">
+                        <div>
+                            <input
+                                placeholder="Search..."
+                                type="text"
+                                value={nam}
+                                onChange={handleChange}/>
+                        </div>
+                    </form>
                     {count > 0 && (
                         <UserTable
                             users={usersCrop}
